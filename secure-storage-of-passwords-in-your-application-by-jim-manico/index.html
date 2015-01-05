@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Secure storage of passwords in your application by Jim Manico</title>
+    <meta name="description" content="A blog build with Inkpad.io">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/blog/site.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <header class="header section--gray v-3">
+      <div class="container">
+        <div class="logo-wrapper"><a href="/" class="logo guest">Crowdcurity</a></div>
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <ul class="nav">
+              <li class="link"><a href="/how">How it Works</a></li>
+              <li class="link"><a href="/central">Crowdcurity Central</a></li>
+              <li class="link"><a href="/clients">Clients</a></li>
+              <li class="link"><a href="/products">Products</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 text-right">
+            <ul class="nav">
+              <li class="link"><a href="/researchers">Researchers</a></li>
+              <li class="link"><a href="/dummy_programs">Programs</a></li>
+              <li class="dropdown"><a id="header-dropdown" href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More
+                  <div class="circled-caret"></div></a>
+                <ul role="menu" aria-labelledby="header-dropdown" class="dropdown-menu">
+                  <li class="triangle-pointer"></li>
+                  <li><a href="#blog" target="_blank">Blog</a></li>
+                  <li><a href="/faq">FAQ</a></li>
+                  <li><a href="/team">Team</a></li>
+                  <li><a href="/contact">Contact Us</a></li>
+                  <li><a href="/press">Press</a></li>
+                </ul>
+              </li>
+              <li><a href="/users/sign_in" class="btn btn--empty">Sign In</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="section--gray text-center v-3-t v-5-b">
+      <div class="container">
+        <h2 class="book">Secure storage of passwords in your application by Jim Manico</h2>
+        <time>Apr 7th, 2014</time>
+      </div>
+    </section>
+    <section class="post v-5">
+      <div class="container">
+      </div>
+      <div class="container">
+        <article>
+<p></p>
+<p><strong><a href="https://www.owasp.org/index.php/User:Jmanico">Jim Manico</a> is an active member of OWASP since 2008. He is mainly supporting OWASP projects that help developers write secure code. In this blogpost he writes about &quot;Secure Storage of passwords in your application&quot; a</strong> subject<strong> highly relevant today where we have recently seen a number of **</strong>hacks where encrypted passwords were stolen.**</p>
+<p><img src="https://s3.amazonaws.com/blog.crowdcurity.com/wp-content/uploads/2014/04/jim_with_quote.png" alt="jim_with_quote"></p>
+<p>Which cryptographic or other algorithm should we use for password storage? This is a highly controversial question with different opinions from the field of cryptography and application security.  Let&apos;s start with a few basic requirements. Essentially, we want to be able to, incredibly quickly, verify if a users password is correct. However, even when attackers somehow steal our database or database data, we do not want them to be able to reverse the password, even when supercomputing capabilities are available, within a reasonable amount of time. The best password storage strategies prevent even the website administrator from knowing their users passwords. The best (and to my knowledge only) threat model created on Password Storage is from <a href="http://goo.gl/Spvzs">John Steven</a>. We challenge all other cryptographers or application security professionals who disagree with Johns assertions to publish a competing threat model, or to critique his work in some scientific and <a href="https://twitter.com/tqbf">publishable way</a>. </p>
+<p>That aside, the whole purpose of strong password storage is to prevent attackers from discovering your users passwords even when your database data and password ciphertext or hash is stolen. Once your password data is stolen, attackers can, using high performance computing, attempt to discover your users passwords &quot;offline&quot; using dictionary attacks, brute force attacks, and rainbow table attacks (ie: pre computed databases of hashes).</p>
+<p>A brute force attack against a password storage system occurs when an attacker walks through a list of every possible password, creates the ciphertext/hash for each potential password, and compares that ciphertext to the passwords stored in your database. Although this seems like an inefficient attack (attempting to walk through every password 10 characters or under considering upper case, lower case, numbers and basic non alphanumeric characters would take approximately 90 ^ 10 attempts or 3.4867844e+19 attempts to cover the entire password space), attackers have access to both large lists of known passwords in use today, specialized password cracking algorithms, and high performance GPU password cracking rigs that <a href="http://arstechnica.com/security/2012/12/25-gpu-cluster-cracks-every-standard-windows-password-in-6-hours/">can attempt many billions of password attempts per second</a> against your password storage mechanism with modest resources.</p>
+<p>A dictionary attack against password storage occurs when:</p>
+<ol>
+<li>An attacker has stolen your stored password ciphertext</li>
+<li>The attacker understands your password storage algorithm</li>
+<li>The attacker attempts to discover users passwords by using a large list of commonly used password and dictionary words, generating the ciphertext for that password, and then attempts to compare that ciphertext with your stored ciphertext</li>
+<li>Once the attacker finds a match, they have discovered the users password for that match.</li>
+</ol>
+<p>Attackers also use large precomputed lists of hashes called rainbow tables. In 2012, <a href="http://www.zdnet.com/blog/security/md5-password-scrambler-no-longer-safe/12317">LinkedIn was compromised and had their password data stolen.</a>  At the time LinkedIn used the md5 algorithm for password storage, a dangerously bad idea. Hackers were able to reverse over 90% of LinkedIn users passwords within the first day after the compromise.</p>
+<p><img src="https://s3.amazonaws.com/blog.crowdcurity.com/wp-content/uploads/2014/04/quote3_jim.png" alt="quote3_jim"></p>
+<p>So what kind of password storage is resistant to an attack of this nature? Well first of all, if you do not enforce a strong password policy, any password storage mechanism is useless. We discuss good password storage mechanism above.</p>
+<p>The first go-to algorithm for password storage is the <a href="http://docs.oracle.com/javase/6/docs/api/javax/crypto/spec/PBEKeySpec.html">PBKDF2 NIST Standard KDF (Key Derivation Function)</a>. This function is both one-way and can be configured to process slowly - on purpose. Why would we want to use a slow algorithm for password storage? GPU cracking rigs and other supercomputing resources can attempt many billions of hashes per second. When using a purposely slow algorithm with proper configuration settings (ie: work factor or iteration count), those billions of attempts per seconds becomes mere thousands of attempts per second on the same hardware. What used to take days or weeks to crack, now will takes months, years or more to crack on the same hardware. No password storage mechanism is perfect. The best we can hope for is to buy time so we can recover from the data loss incident.  Slow (adaptive) algorithms help us in this endeavor.</p>
+<p>Another option for password storage is the <a href="http://grepcode.com/file/repo1.maven.org/maven2/org.bouncycastle/bcprov-jdk15on/1.47/org/bouncycastle/crypto/generators/SCrypt.java">scrypt adaptive algorithm</a>.  Not only is scrypt slow but it can also be memory hardened (ie: scrypt can be configured to consume a certain amount of memory when executed, limiting attacker hardware from parallelizing their attempt to crack your password).</p>
+<p>Several Security libraries use loops of hashing algorithms for password storage, something we highly discourage. Our recommendations of PBKDF2 and scrypt are formal KDF&apos;s - Key Derivation Functions - and are made to take a password and (slowly) churn out a key. THESE are the best ways to store a password since they are standard algorithms. Looping through fast hashes is - old school - and non standard cryptography. We can do better.</p>
+<p>Even though PBKDF2 and scrypt are good initial choices for password storage for most types of websites, when was the last time your were told to slow down your code? These algorithms can require an extensive amount of hardware when attempting to support a large number of concurrent logins. In fact, the Django open source python content management system suffered from a denial of service vulnerability because it supported <a href="http://arstechnica.com/security/2013/09/long-passwords-are-good-but-too-much-length-can-be-bad-for-security/">unlimited length passwords and the PBKDF2 algorithm for password support</a>! Do not make the same mistake. Although you should support long passwords, and PBKDF2 is a reasonable first-pick for password storage, do not support too long passwords.</p>
+<p>Call-out: Be sure to add unique per-user salt of at least 32 characters in length to your password before storing it. Also be sure to make the iteration account as large as possible without harming your users experience. A good rule of thumb is to set your algorithms iteration count or work factor so that password storage computation takes &#xBD; second on your production server and to increase that value over time.</p>
+</article>
+      </div>
+    </section>
+    <section>
+      <nav class="links v-5">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-xs-3 text-left"><a href="/blog/crowdcurity-at-coinsummit/"><img src="/blog/images/link-arrow-left.png" alt="" height: 16 width="16" class="link-arrow-left"><span class="hidden-xs">Previous Post</span></a></div>
+            <div class="col-xs-3"><a href="/blog/"><img src="/blog/images/link-arrow-up.png" alt="" height: 16 width="16" class="link-arrow-left"><span class="hidden-xs">Back to Blog Page</span></a></div>
+            <div class="col-xs-3"><a href="/blog#share"><img src="/blog/images/icon--share.png" alt="" height: 21 width="21" class="icon--share"><span class="hidden-xs">Share this Post</span></a></div>
+            <div class="col-xs-3 text-right"><a href="/blog/capture-the-coin/"><span class="hidden-xs">Next Post</span><img src="/blog/images/link-arrow.png" alt="" height: 16 width="16" class="link-arrow"></a></div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="row v-7-t v-5-b">
+          <div class="col-sm-4 text-center v-1-t"><img alt="Bug" height="110" src="/blog/images/footer-bug.png" width="79" class="img--bug"></div>
+          <div class="col-sm-2">
+            <ul>
+              <li><strong>Get Started</strong></li>
+              <li><a href="#" target="_blank">How it Works</a></li>
+              <li><a href="#" target="_blank">CC Central</a></li>
+              <li><a href="#" target="_blank">Products</a></li>
+              <li><a href="#" target="_blank">Clients</a></li>
+              <li><a href="#" target="_blank">CC Seal</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <ul>
+              <li><strong>Researchers</strong></li>
+              <li><a href="#" target="_blank">Researchers</a></li>
+              <li><a href="#" target="_blank">Hall of Fame</a></li>
+              <li><a href="#" target="_blank">Programs</a></li>
+              <li><a href="#" target="_blank">Sign Up</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <ul>
+              <li><strong>Crowdcurity</strong></li>
+              <li><a href="#" target="_blank">Get in Touch</a></li>
+              <li><a href="#" target="_blank">Press &amp; Logos</a></li>
+              <li><a href="#" target="_blank">Team</a></li>
+              <li><a href="#" target="_blank">Blog</a></li>
+              <li><a href="#" target="_blank">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <ul>
+              <li><strong>Social Media</strong></li>
+              <li><a href="#" target="_blank">Facebook</a></li>
+              <li><a href="#" target="_blank">LinkedIn</a></li>
+              <li><a href="#" target="_blank">Google+</a></li>
+              <li><a href="#" target="_blank">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center footline v-2"><span>&copy; 2014 Crowdcurity</span><span class="separator">|</span><a href="http://www.inkpad.io" target="_blank">Blog powered by Inkpad</a><span class="separator">|</span><a href="#" target="_blank">Terms of Use</a></div>
+      </div>
+    </footer>
+    <script src="/blog/site.js" type="text/javascript"></script>
+  </body>
+</html>
