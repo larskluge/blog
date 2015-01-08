@@ -9,24 +9,39 @@
     <link href="/blog/site.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <header class="header section--gray v-3">
+    <header class="header section--gray v-2 v-3-sm">
       <div class="container">
-        <div class="logo-wrapper"><a href="/" class="logo guest">Crowdcurity</a></div>
-        <div class="row">
+        <div class="logo-wrapper"><a href="/" class="logo">Crowdcurity</a></div>
+        <div class="row visible-xs">
+          <div class="col-xs-6 col-xs-offset-6">
+            <div data-menu="right" class="menu-button menu-toggle right-menu-toggle">
+              <div class="bar">
+                <div></div>
+              </div>
+              <div class="bar middle-bar">
+                <div></div>
+                <div></div>
+              </div>
+              <div class="bar">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row hidden-xs">
           <div class="col-sm-6 text-left">
-            <ul class="nav">
+            <ul class="links">
               <li class="link"><a href="/how">How it Works</a></li>
-              <li class="link"><a href="/central">Crowdcurity Central</a></li>
-              <li class="link"><a href="/clients">Clients</a></li>
+              <li class="link"><a href="/central">CC Central</a></li>
               <li class="link"><a href="/products">Products</a></li>
+              <li class="link"><a href="/clients">Clients</a></li>
             </ul>
           </div>
           <div class="col-sm-6 text-right">
-            <ul class="nav">
+            <ul class="links">
               <li class="link"><a href="/researchers">Researchers</a></li>
-              <li class="link"><a href="/dummy_programs">Programs</a></li>
-              <li class="dropdown"><a id="header-dropdown" href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More
-                  <div class="circled-caret"></div></a>
+              <li class="link"><a href="/programs">Programs</a></li>
+              <li class="dropdown"><a id="header-dropdown" href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More<div class="circled-caret"></div></a>
                 <ul role="menu" aria-labelledby="header-dropdown" class="dropdown-menu">
                   <li class="triangle-pointer"></li>
                   <li><a href="#blog" target="_blank">Blog</a></li>
@@ -42,83 +57,157 @@
         </div>
       </div>
     </header>
-    <section class="section--gray text-center v-3-t v-5-b">
+    <div class="section--gray">
+      <hr class="wrapper-separator visible-xs">
+    </div>
+    <div class="menu-wrapper menu-wrapper--right">
       <div class="container">
-        <h2 class="book">A diverse crowd</h2>
-        <time>Feb 8th, 2014</time>
+        <div class="v-3-t"></div>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul>
+              <li><a href="/how">How it Works</a></li>
+              <li><a href="/central">CC Central</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/clients">Clients</a></li>
+              <li><a href="/seal">Seal</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul>
+              <li><a href="/contact">Get in Touch</a></li>
+              <li><a href="/press">Press &amp; Logos</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/faq">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="vm-2">
+        <div class="row">
+          <div class="col-xs-6">
+            <ul>
+              <li><a href="/researchers">Researchers</a></li>
+              <li><a href="/hall_of_fame">Hall of Fame</a></li>
+              <li><a href="/programs">Programs</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul>
+              <li><a href="/users/sign_in">Sing In</a></li>
+              <li><a href="/users/sign_up">Sing Up</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="vm-2">
+        <div class="row">
+          <div class="col-xs-6">
+            <ul>
+              <li><a href="https://www.facebook.com/crowdcurity" target="_blank">Facebook</a></li>
+              <li><a href="https://www.linkedin.com/company/crowdcurity" target="_blank">LinkedIn</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-6">
+            <ul>
+              <li><a href="https://plus.google.com/101239716062419089642" target="_blank">Google+</a></li>
+              <li><a href="https://twitter.com/crowdcurity" target="_blank">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="v-3-t"></div>
       </div>
-    </section>
-    <section class="post v-5">
-      <div class="container">
-      </div>
-      <div class="container">
-        <article>
+    </div>
+    <div class="main-wrapper">
+      <section class="section--gray text-center v-5-t v-3-sm-t v-5-b">
+        <div class="container">
+          <h2 class="book">A diverse crowd</h2>
+          <time>Feb 8th, 2014</time>
+        </div>
+      </section>
+      <section class="post v-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-10">
+              <article class="markdown">
 <p></p>
 <p>When we first launched our own <a href="https://www.crowdcurity.com/crowdcurity/crowdcurity">bug bounty program</a> in September 2013, we were all excited, curious, eager, and slightly anxious. We constantly monitored our server logs, regularly refreshing our backend statistics and Google Analytics every few minutes. Suddenly, the coolest began to happen: people from 20 different countries on 6 different continents began hacking and testing the CrowdCurity web application.  In just a few months, we had created a truly global platform, a platform that has allowed us to tap into a truly global crowd of people passionate about information security.As of today, 5 months have passed and many reward programs are active and running on the CrowdCurity platform. Everyday, it is exciting to see talented security researchers sign up and contribute to making the web a safer place by submitting site vulnerabilities from all around the world.</p>
 <p>To show the true strength in the vast numbers of researchers active on the CrowdCurity platform, our creative intern Kevin Descardes designed this visual graphic that illustrates the locations of our top security researchers from around the globe. So far, 32 different countries are represented, and we even have a security tester from French Polynesia!</p>
 <p><img src="https://s3.amazonaws.com/blog.crowdcurity.com/wp-content/uploads/2014/02/map.png" alt="map"></p>
 <p>The diversity in our marketplace of security testers emphasizes the core advantage of crowdsourcing web security. The threat from malicious hackers is global, self-distributed and creative, and that problem can&#x2019;t be solved with corporate security consultants working locally and by the hour. What is needed to build a better, safer web is a creative and diverse crowd of security researchers motivated by the incentives that encourage them to find and patch the most critical flaws in web applications in the world, something that we at CrowdCurity are proud to be building.</p>
 </article>
-      </div>
-    </section>
-    <section>
-      <nav class="links v-5">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="post-nav">
+        <nav class="links v-5">
+          <div class="container">
+            <div class="row text-center">
+              <div class="col-xs-3 text-left"><a href="/blog/3-months-in-boostvc-demo-day/"><img src="/blog/images/link-arrow-left.png" alt="" height: 16 width="16" class="link-arrow-left"><span class="hidden-xs">Previous Post</span></a></div>
+              <div class="col-xs-3"><a href="/blog"><img src="/blog/images/link-arrow-up.png" alt="" height: 16 width="16" class="link-arrow-left"><span class="hidden-xs">Back to Blog Page</span></a></div>
+              <div class="col-xs-3">
+                <div id="share-dropdown" class="dropup share-dropdown">
+                  <ul role="menu" aria-labelledby="share-dropdown-toggle" class="dropdown-menu">
+                    <li><a role="menuitem" tabindex="-1" data-social="facebook" href="#">Facebook</a></li>
+                    <li><a role="menuitem" tabindex="-1" data-social="twitter" href="#">Twitter</a></li>
+                    <li><a role="menuitem" tabindex="-1" data-social="linkedin" href="#">LinkedIn</a></li>
+                    <li><a role="menuitem" tabindex="-1" data-social="reddit" href="#">Reddit</a></li>
+                    <li><a role="menuitem" tabindex="-1" data-social="google" href="#">Google+</a></li>
+                  </ul>
+                </div><a id="share-dropdown-toggle" href="#" data-target="#share-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/blog/images/icon--share.png" alt="" height: 21 width="21" class="icon--share"><span class="hidden-xs">Share this Post</span></a>
+              </div>
+              <div class="text-right col-xs-3"><a href="/blog/secured-by-crowdcurity/"><span class="hidden-xs">Next Post</span><img src="/blog/images/link-arrow.png" alt="" height: 16 width="16" class="link-arrow"></a></div>
+            </div>
+          </div>
+        </nav>
+      </section>
+      <footer class="footer">
         <div class="container">
-          <div class="row text-center">
-            <div class="col-xs-3 text-left"><a href="/blog/3-months-in-boostvc-demo-day/"><img src="/blog/images/link-arrow-left.png" alt="" height: 16 width="16" class="link-arrow-left"><span class="hidden-xs">Previous Post</span></a></div>
-            <div class="col-xs-3"><a href="/blog/"><img src="/blog/images/link-arrow-up.png" alt="" height: 16 width="16" class="link-arrow-left"><span class="hidden-xs">Back to Blog Page</span></a></div>
-            <div class="col-xs-3"><a href="/blog#share"><img src="/blog/images/icon--share.png" alt="" height: 21 width="21" class="icon--share"><span class="hidden-xs">Share this Post</span></a></div>
-            <div class="col-xs-3 text-right"><a href="/blog/secured-by-crowdcurity/"><span class="hidden-xs">Next Post</span><img src="/blog/images/link-arrow.png" alt="" height: 16 width="16" class="link-arrow"></a></div>
+          <div class="row v-7-t v-5-b hidden-xs">
+            <div class="col-sm-4 text-center v-1-t"><img alt="Bug" height="130" src="/blog/images/animation--bug.gif" width="79" class="img--bug"></div>
+            <div class="col-sm-2">
+              <ul>
+                <li><strong>Get Started</strong></li>
+                <li><a href="/how" target="_blank">How it Works</a></li>
+                <li><a href="/central" target="_blank">CC Central</a></li>
+                <li><a href="/products" target="_blank">Products</a></li>
+                <li><a href="/clients" target="_blank">Clients</a></li>
+                <li><a href="/seal" target="_blank">CC Seal</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-2">
+              <ul>
+                <li><strong>Platform</strong></li>
+                <li><a href="/researchers" target="_blank">Researchers</a></li>
+                <li><a href="/hall_of_fame" target="_blank">Hall of Fame</a></li>
+                <li><a href="/programs" target="_blank">Programs</a></li>
+                <li><a href="/security" target="_blank">Security</a></li>
+                <li><a href="/users/sign_up" target="_blank">Sign Up</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-2">
+              <ul>
+                <li><strong>Company</strong></li>
+                <li><a href="/contact" target="_blank">Get in Touch</a></li>
+                <li><a href="/press" target="_blank">Press &amp; Logos</a></li>
+                <li><a href="/team" target="_blank">Team</a></li>
+                <li><a href="/blog" target="_blank">Blog</a></li>
+                <li><a href="/faq" target="_blank">FAQ</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-2">
+              <ul>
+                <li><strong>Social</strong></li>
+                <li><a href="https://www.facebook.com/crowdcurity" target="_blank">Facebook</a></li>
+                <li><a href="https://www.linkedin.com/company/crowdcurity" target="_blank">LinkedIn</a></li>
+                <li><a href="https://plus.google.com/101239716062419089642" target="_blank">Google+</a></li>
+                <li><a href="https://twitter.com/crowdcurity" target="_blank">Twitter</a></li>
+              </ul>
+            </div>
           </div>
+          <div class="text-center footline v-2"><span>&copy; 2014 Crowdcurity</span><span class="separator">|</span><a href="http://www.inkpad.io" target="_blank">Blog powered by Inkpad</a><span class="separator">|</span><a href="/terms" target="_blank">Terms of Use</a></div>
         </div>
-      </nav>
-    </section>
-    <footer class="footer">
-      <div class="container">
-        <div class="row v-7-t v-5-b">
-          <div class="col-sm-4 text-center v-1-t"><img alt="Bug" height="110" src="/blog/images/footer-bug.png" width="79" class="img--bug"></div>
-          <div class="col-sm-2">
-            <ul>
-              <li><strong>Get Started</strong></li>
-              <li><a href="#" target="_blank">How it Works</a></li>
-              <li><a href="#" target="_blank">CC Central</a></li>
-              <li><a href="#" target="_blank">Products</a></li>
-              <li><a href="#" target="_blank">Clients</a></li>
-              <li><a href="#" target="_blank">CC Seal</a></li>
-            </ul>
-          </div>
-          <div class="col-sm-2">
-            <ul>
-              <li><strong>Researchers</strong></li>
-              <li><a href="#" target="_blank">Researchers</a></li>
-              <li><a href="#" target="_blank">Hall of Fame</a></li>
-              <li><a href="#" target="_blank">Programs</a></li>
-              <li><a href="#" target="_blank">Sign Up</a></li>
-            </ul>
-          </div>
-          <div class="col-sm-2">
-            <ul>
-              <li><strong>Crowdcurity</strong></li>
-              <li><a href="#" target="_blank">Get in Touch</a></li>
-              <li><a href="#" target="_blank">Press &amp; Logos</a></li>
-              <li><a href="#" target="_blank">Team</a></li>
-              <li><a href="#" target="_blank">Blog</a></li>
-              <li><a href="#" target="_blank">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="col-sm-2">
-            <ul>
-              <li><strong>Social Media</strong></li>
-              <li><a href="#" target="_blank">Facebook</a></li>
-              <li><a href="#" target="_blank">LinkedIn</a></li>
-              <li><a href="#" target="_blank">Google+</a></li>
-              <li><a href="#" target="_blank">Twitter</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="text-center footline v-2"><span>&copy; 2014 Crowdcurity</span><span class="separator">|</span><a href="http://www.inkpad.io" target="_blank">Blog powered by Inkpad</a><span class="separator">|</span><a href="#" target="_blank">Terms of Use</a></div>
-      </div>
-    </footer>
+      </footer>
+    </div>
     <script src="/blog/site.js" type="text/javascript"></script>
   </body>
 </html>

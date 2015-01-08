@@ -164,3 +164,51 @@
     .on('keydown.bs.dropdown.data-api', '[role="listbox"]', Dropdown.prototype.keydown)
 
 }(jQuery);
+
+$('body').on('click', '.menu-toggle[data-menu]', function () {
+  $('body').toggleClass('with-menu with-right-menu', !$('body').is('.with-menu'));
+});
+
+$('body').on('selectstart', '.menu-toggle', function () { return false });
+
+
+// Social media
+//
+
+$('[data-social="facebook"]').click(function() {
+  var url = encodeURIComponent(location.href);
+  var title = encodeURIComponent(document.title);
+  window.open('http://www.facebook.com/sharer.php?u=' + url + '&t=' + title,
+    'sharer', 'toolbar=0,status=0,width=554,height=436');
+  return false;
+});
+
+$('[data-social="twitter"]').click(function() {
+  var title = encodeURIComponent(document.title);
+  window.open('http://twitter.com/share?via=crowdcurity&text=' + title,
+    'twitter', 'toolbar=0,status=1,width=575,height=400');
+  return false;
+});
+
+$('[data-social="linkedin"]').click(function() {
+  var url = encodeURIComponent(location.href);
+  window.open('https://www.linkedin.com/cws/share?url=' + url,
+    'linkedin', 'toolbar=0,status=1,width=600,height=444');
+  return false;
+});
+
+$('[data-social="reddit"]').click(function() {
+  var url = encodeURIComponent(location.href);
+  var title = encodeURIComponent(document.title);
+  window.open('http://www.reddit.com/submit?v=5&noui&jump=close&url=' + url + '&title=' + title,
+    'reddit', 'toolbar=0,status=0,width=840,height=750');
+  return false;
+});
+
+$('[data-social="google"]').click(function() {
+  var url = encodeURIComponent(location.href);
+  window.open('https://plus.google.com/share?url=' + url,
+    'google', 'toolbar=0,status=0,width=510,height=360');
+  return false;
+});
+
